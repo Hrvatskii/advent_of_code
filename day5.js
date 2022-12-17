@@ -34,7 +34,7 @@ for (var column = 0; column < 9; column++) {
     currentStack1 = [];
 }
 
-// ??????
+// ????????
 instructions.forEach((currentInstruction) => {
     var instruction = currentInstruction.split(" ");
     var [amount, start, end] = [instruction[1], instruction[3], instruction[5]];
