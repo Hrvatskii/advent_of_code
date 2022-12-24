@@ -33,10 +33,3 @@ function main() {
 
 main();
 
-let nisse = "42";
-let apa = nisse;
-nisse+="asdf";
-console.log(nisse);
-console.log(apa);
-
-
