@@ -14,14 +14,14 @@ let row = "";
 console.log("part 2:")
 
 function cycleCheck() {
-	// part 1 (RGLRBZAU)
+	// part 1 (14420)
 	cycle++;
 	if (cycleChecks.includes(cycle)) {
 		values.push(X*cycleChecks[0]);
 		cycleChecks.shift();
 	}
 
-	// part 2 (14420)
+	// part 2 (RGLRBZAU)
 	CRTCycle++;
 	if (CRTCycle-1 >= X-1 && CRTCycle-1 <= X+1) {
 		row += "█";
