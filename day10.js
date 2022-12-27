@@ -9,41 +9,37 @@ let cycle = 0;
 let X = 1;
 let cycleChecks = [20, 60, 100, 140, 180, 220];
 let CRTCycle = 0;
-let values = [];
-let row = "";
-console.log("part 2:")
+let values = 0;
+let screen = "";
 
 function cycleCheck() {
 	// part 1 (14420)
 	cycle++;
 	if (cycleChecks.includes(cycle)) {
-		values.push(X*cycleChecks[0]);
+		values += X*cycleChecks[0];
 		cycleChecks.shift();
 	}
 
 	// part 2 (RGLRBZAU)
 	CRTCycle++;
 	if (CRTCycle-1 >= X-1 && CRTCycle-1 <= X+1) {
-		row += "█";
+		screen += "█";
 	} else {
-		row += " ";
+		screen += " ";
 	}
 	if (CRTCycle == 40) {
-		console.log(row);
 		CRTCycle = 0;
-		row = "";
+		screen += "\n";
 	}
 }
 
 syncReadFile('./day10input.txt').forEach((command) => {
-	if (command == "noop") {
 		cycleCheck();
-	} else {
-		let V = parseInt(command.split(" ")[1]);
-		cycleCheck();
-		cycleCheck();
-		X += V;
-	}
+		if (command != "noop") {
+			cycleCheck();
+			X += parseInt(command.split(" ")[1]);
+		}
 })
 
-console.log("part 1:", values.reduce((partialSum, a) => partialSum + a, 0));
+console.log("part 1:", values, "\npart 2:");
+console.log(screen);
