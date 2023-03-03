@@ -220,7 +220,7 @@ function loopThrough(part) {
       let startPositions = [firstPosition, secondPosition];
       let exitPoints = [];
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 10; i++) {
         badPositions = [];
         playerPositions[0].position.x = Number(startPositions[i].split(" ")[0]);
         playerPositions[0].position.y = Number(startPositions[i].split(" ")[1]);
@@ -271,8 +271,7 @@ function loopThrough(part) {
 
         if (exitPoints[0] == exitPoints[1]) {
           document.getElementById("answer-html").innerText = `Answer: ${winSnakePath.length}`
-        } else {
-
+          break;
         }
       }
     }
