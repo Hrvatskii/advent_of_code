@@ -7,7 +7,6 @@ namespace day01 // Note: actual namespace depends on the project name.
         static void Main(string[] args)
         {
             string[] lines = File.ReadAllLines(@"../input/day01.txt");
-            Console.WriteLine(lines);
             int totalSum = 0;
             // part 1 *********************************************************
 //            for (int i = 0; i < lines.Length; i++)
@@ -30,10 +29,10 @@ namespace day01 // Note: actual namespace depends on the project name.
 //
 //                totalSum += partialSum;
 //            }
-//            Console.WriteLine(totalSum);
+//            Console.WriteLine(totalSum); // 54697
 //
+            // part 2 *********************************************************
             string[] digits = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            string[] digitsBackwards = { "eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin" };
             for (int i = 0; i < lines.Length; i++)
             {
                 string currentLine = lines[i];
@@ -84,9 +83,8 @@ namespace day01 // Note: actual namespace depends on the project name.
                     }
                 }
                 totalSum += partialSum;
-                Console.WriteLine(partialSum);
             }
-            Console.WriteLine(totalSum);
+            Console.WriteLine(totalSum); // 54885
         }
     }
 }
