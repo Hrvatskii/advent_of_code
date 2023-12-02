@@ -20,25 +20,25 @@ namespace day02 // Note: actual namespace depends on the project name.
                 for (int j = 0; j < values.Length; j++)
                 {
                     values[j] = values[j].Trim();
-                    int amountOfBalls = int.Parse(values[j].Split(' ')[0]);
+                    int amountOfCubes = int.Parse(values[j].Split(' ')[0]);
                     string color = values[j].Split(' ')[1];
 
                     if (color == "red")
                     {
-                        if (amountOfBalls > 12) isValidGame = false;
-                        if (amountOfBalls > minimumRed) minimumRed = amountOfBalls;
+                        if (amountOfCubes > 12) isValidGame = false;
+                        if (amountOfCubes > minimumRed) minimumRed = amountOfCubes;
                     }
                     
                     if (color == "green")
                     {
-                        if (amountOfBalls > 13) isValidGame = false;
-                        if (amountOfBalls > minimumGreen) minimumGreen = amountOfBalls;
+                        if (amountOfCubes > 13) isValidGame = false;
+                        if (amountOfCubes > minimumGreen) minimumGreen = amountOfCubes;
                     }
 
                     if (color == "blue")
                     {
-                        if (amountOfBalls > 14) isValidGame = false;
-                        if (amountOfBalls > minimumBlue) minimumBlue = amountOfBalls;
+                        if (amountOfCubes > 14) isValidGame = false;
+                        if (amountOfCubes > minimumBlue) minimumBlue = amountOfCubes;
                     }
                 }
 
