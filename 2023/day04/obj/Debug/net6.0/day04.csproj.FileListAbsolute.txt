@@ -1,0 +1,15 @@
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/day04
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/day04.deps.json
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/day04.runtimeconfig.json
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/day04.dll
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/ref/day04.dll
+/home/lucas/programming/advent_of_code/2023/day04/bin/Debug/net6.0/day04.pdb
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.csproj.AssemblyReference.cache
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.GeneratedMSBuildEditorConfig.editorconfig
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.AssemblyInfoInputs.cache
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.AssemblyInfo.cs
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.csproj.CoreCompileInputs.cache
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.dll
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/ref/day04.dll
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.pdb
+/home/lucas/programming/advent_of_code/2023/day04/obj/Debug/net6.0/day04.genruntimeconfig.cache
