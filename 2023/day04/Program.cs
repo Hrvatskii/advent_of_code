@@ -1,10 +1,13 @@
-﻿namespace day04
+﻿using System.Diagnostics;
+
+namespace day04
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             string[] lines = File.ReadAllLines("../input/day04.txt");
+            var stopwatch = Stopwatch.StartNew();
 
             int[] amountOfCards = new int[lines.Length];
             amountOfCards = amountOfCards.Select(n => 1).ToArray();
@@ -35,20 +38,19 @@
                         corrects++;
                 }
         
-                for (int j = 0; j < amountOfCards[i]; j++)
+                for (int j = 0; j < corrects; j++)
                 {
-                    for (int k = 0; k < corrects; k++)
-                    {
-                        amountOfCards[i + k + 1]++;
-                    }
+                    amountOfCards[i + j + 1] += amountOfCards[i];
                 }
 
                 partOne += (int)(Math.Pow(2, corrects - 1));
             }
             partTwo = amountOfCards.Sum();
+            stopwatch.Stop();
 
-            Console.WriteLine(partOne); // 23235
-            Console.WriteLine(partTwo); // 5920640
+            Console.WriteLine($"execution time\t: {stopwatch.ElapsedMilliseconds} ms");
+            Console.WriteLine("part one\t: " + partOne); // 23235
+            Console.WriteLine("part two\t: " + partTwo); // 5920640
         }
     }
 }
