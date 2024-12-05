@@ -36,7 +36,6 @@ int main() {
             int n1 = stoi(line.substr(0, 2));
             int n2 = stoi(line.substr(3, 2));
             rules[n1].push_back(n2);
-        // solves the puzzle
         } else {
             // splits the line to a vector
             std::vector<int> order;
@@ -45,34 +44,29 @@ int main() {
             while (getline(ss, temp, ','))
                 order.push_back(stoi(temp));
 
-            // checks if the line is valid
+            // solves part 1 and part 2
+            std::vector<int> sorted;
             bool isValid = true;
-            for (int i = 0; i < order.size(); i++) 
-                for (int j = 0; j < i; j++) 
-                    if (!includes(rules[order[j]], order[i])) 
+
+            for (int i = 0; i < order.size(); i++) {
+                int length = sorted.size();
+                for (int j = 0; j < i; j++) {
+                    if (!includes(rules[order[j]], order[i]))
                         isValid = false;
+
+                    if (includes(rules[sorted[j]], order[i])) {
+                        sorted.insert(sorted.begin() + j, order[i]);
+                        break;
+                    }
+                }
+                if (length == sorted.size())
+                    sorted.push_back(order[i]);
+            }
 
             if (isValid) 
                 part01 += order[order.size() / 2];
-            else {
-                std::vector<int> sorted;
-
-                sorted.push_back(order[0]);
-
-                for (int i = 1; i < order.size(); i++) {
-                    int length = sorted.size();
-                    for (int j = 0; j < sorted.size(); j++) {
-                        if (includes(rules[sorted[j]], order[i])) {
-                            sorted.insert(sorted.begin() + j, order[i]);
-                            break;
-                        }
-                    }
-                    if (length == sorted.size())
-                        sorted.push_back(order[i]);
-                }
-
+            else 
                 part02 += sorted[sorted.size() / 2];
-            }
         }
     }
 
