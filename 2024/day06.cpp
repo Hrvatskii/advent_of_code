@@ -59,17 +59,11 @@ bool includes(std::vector<std::array<std::complex<double>, 2>> vec, std::array<s
     return std::find(vec.begin(), vec.end(), val) != vec.end();
 }
 
-int solve(std::vector<std::string> map) {
+int solve(std::vector<std::string> map, std::complex<double> startPos) {
     std::complex<double> direction{-1, 0};
-    std::complex<double> position;
+    std::complex<double> position = startPos;
     std::vector<std::array<std::complex<double>, 2>> visited;
-    std::complex<double> newPosition = position;
-
-    for (int i = 0; i < map.size(); i++) {
-        if (map[i].find('^') < map[i].size()) {
-            position = {(double)map[i].find('^'), (double)map.size() - i - 1};
-        }
-    }
+    std::complex<double> newPosition = startPos;
 
     while (!isOoB(position + direction, 0, map[0].size(), 0, map.size())) {
         direction *= std::complex<double>{0, -1};
@@ -81,15 +75,6 @@ int solve(std::vector<std::string> map) {
     }
 
     return 0;
-}
-
-bool isInVisited(std::vector<std::array<std::complex<double>, 2>> visited, std::complex<double> pos) {
-    for (std::array<std::complex<double>, 2> pair : visited) {
-        if (isInRange(pair[0], pair[1], pos))
-            return true;
-    }
-
-    return false;
 }
 
 bool isCloseTo(std::vector<std::array<std::complex<double>, 2>> visited, std::complex<double> pos) {
@@ -116,15 +101,16 @@ int main() {
     // programmers hate this one simple trick!
     int part01 = 1;
     std::complex<double> direction{-1, 0};
-    std::complex<double> position;
     std::vector<std::array<std::complex<double>, 2>> visited;
-    std::complex<double> newPosition = position;
+    std::complex<double> startPos;
 
     for (int i = 0; i < map.size(); i++) {
         if (map[i].find('^') < map[i].size()) {
-            position = {(double)map[i].find('^'), (double)map.size() - i - 1};
+            startPos = {(double)map[i].find('^'), (double)map.size() - i - 1};
         }
     }
+    std::complex<double> position = startPos;
+    std::complex<double> newPosition = startPos;
 
     while (!isOoB(position + direction, 0, map[0].size(), 0, map.size())) {
         direction *= std::complex<double>{0, -1};
@@ -141,7 +127,7 @@ int main() {
             if (map[i][j] != '.' || !isCloseTo(visited, pos))
                 continue;
             map[i][j] = '#';
-            part02 += solve(map);
+            part02 += solve(map, startPos);
             map[i][j] = '.';
         }
     }
