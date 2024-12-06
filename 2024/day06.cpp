@@ -10,7 +10,7 @@ bool isOoB(std::complex<double> pos, int xmin, int xmax, int ymin, int ymax) {
     return !(pos.imag() >= ymin && pos.imag() < ymax && pos.real() >= xmin && pos.real() < xmax);
 }
 
-std::complex<double> findObstruction(std::vector<std::string> map, std::complex<double> direction, std::complex<double> position) {
+std::complex<double> findObstruction(std::vector<std::string> &map, std::complex<double> direction, std::complex<double> position) {
     std::complex<double> newPosition = position;
 
     while (!isOoB(newPosition, 0, map[0].size(), 0, map.size()) && map[map.size() - newPosition.imag() - 1][newPosition.real()] != '#') {
@@ -59,7 +59,7 @@ bool includes(std::vector<std::array<std::complex<double>, 2>> vec, std::array<s
     return std::find(vec.begin(), vec.end(), val) != vec.end();
 }
 
-int solve(std::vector<std::string> map, std::complex<double> startPos) {
+int solve(std::vector<std::string> &map, std::complex<double> startPos) {
     std::complex<double> direction{-1, 0};
     std::complex<double> position = startPos;
     std::vector<std::array<std::complex<double>, 2>> visited;
