@@ -14,7 +14,7 @@ struct ComplexHash {
     }
 };
 
-bool includes(std::vector<coord> vec, coord pos) {
+bool includes(const std::vector<coord> &vec, const coord pos) {
     return std::find(vec.begin(), vec.end(), pos) != vec.end();
 }
 
@@ -32,16 +32,14 @@ int main() {
     input.close();
 
     std::unordered_map<coord, int, ComplexHash> free;
-    coord startPos, endPos;
+    coord endPos;
     
     // find start and end and mark valid places to go
     for (int y = 0; y < temp.size(); y++) {
         for (int x = 0; x < temp[0].size(); x++) {
             if (temp[y][x] != '#')
                 free[{x, y}] = 0;
-            if (temp[y][x] == 'S')
-                startPos = {x, y};
-            else if (temp[y][x] == 'E')
+            if (temp[y][x] == 'E')
                 endPos = {x, y};
         }
     }
@@ -75,14 +73,17 @@ int main() {
     int part01 = 0;
     int part02 = 0;
     for (auto [pos, distance] : free) {
-        std::vector<coord> endPoses;
+        std::unordered_map<coord, int, ComplexHash> endPoses;
         for (int x = -20; x <= 20; x++) {
+            if ((x < 0 && pos.real() - abs(x) < 0) || (x > 0 && pos.real() + abs(x) > temp[0].size()))
+                continue;
             for (int y = -abs(abs(x) - 20); y <= abs(abs(x) - 20); y++) {
-                coord newPos = pos + coord{x, y};
-                if (free.find(newPos) != free.end() && free[pos] - free[newPos] - abs(x) - abs(y) >= 100 && !includes(endPoses, newPos)) {
-                    if ((abs(x) == 2 && y == 0) || (x == 0 && abs(y) == 2))
-                        part01++;
-                    endPoses.emplace_back(newPos);
+                if ((y < 0 && pos.imag() - abs(y) < 0) || (y > 0 && pos.imag() + abs(y) > temp.size()))
+                    continue;
+                const coord newPos = pos + coord{x, y};
+                if (free.find(newPos) != free.end() && free[pos] - free[newPos] - abs(x) - abs(y) >= 100 && endPoses[newPos] != 1) {
+                    part01 += ((abs(x) == 2 && y == 0) || (x == 0 && abs(y) == 2));
+                    endPoses[newPos] = 1;
                     part02++;
                 }
             }
@@ -96,7 +97,6 @@ int main() {
     std::cout << "part 1: " << part01 << "\n";
     std::cout << "part 2: " << part02 << "\n";
     std::cout << "time taken: " << duration << "s\n";
-        
 
     return 0;
 }
